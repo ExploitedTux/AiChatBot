@@ -29,21 +29,20 @@ qwen-heretic
 
 </details>
 Installation
-<details> <summary><strong>1. Clone the repository</strong></summary>
+<details> <summary><strong>Installation</strong></summary>
 git clone https://github.com/ExploitedTux/AiChatBot.git
 cd AiChatBot
-
-</details> <details> <summary><strong>2. Install dependencies</strong></summary>
+    
 npm install
 
-</details> <details> <summary><strong>3. Install an Ollama model</strong></summary>
+Install an Ollama model
 
+Example:
 git clone https://huggingface.co/mufasabrownie/Qwen3-4B-heretic-GGUF
-
-
 You can replace qwen3.4B with another compatible Ollama model.
 
-</details> <details> <summary><strong>4. Start the bot</strong></summary>
+Configure the AiChatBot.js file for your bot
+
 node AiChatBot.js
 
 </details>
