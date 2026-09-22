@@ -1,39 +1,81 @@
+Minecraft AI Chat Bot
 
-Simple Minecraft AI bot using Mineflayer and Ollama.
+A simple Minecraft AI chat bot built with Mineflayer
+ and Ollama
+.
 
 Features
+
 Per-user conversation memory
-Automatic reconnect if disconnected
-Able to blacklist specific usernames
-Automatic announcements To announce how to use the bot
-Easy to configure
-Mommy prompt
+
+Automatic reconnect when disconnected
+
+Username blacklist support
+
+Automatic announcements explaining how to use the bot
+
+Easy configuration
+
+Customizable AI model
+
+Mommy prompt support
+
+Configurable chat cooldowns
 
 Requirements
 
 Node.js
+
 Ollama
-Qwen-heretic
+
+Qwen-Heretic or another compatible Ollama model
+
 Mineflayer
 
+Installation
 
-Install
-https://github.com/ExploitedTux/AiChatBot.git
+Clone the repository:
 
+git clone https://github.com/ExploitedTux/AiChatBot.git
 cd AiChatBot
+
+
+Install the required dependencies:
+
 npm install
-Ollama pull model
+
+
+Pull your preferred Ollama model:
+
+ollama pull qwen-heretic
+
+
+Start the bot:
+
 node AiChatBot.js
 
-
 Configuration
-Edit the values at the top of AiChatBot.js to change:
-Minecraft server
+
+Open AiChatBot.js and edit the configuration values at the top of the file.
+
+You can configure:
+
+Minecraft server address and port
+
 Bot username
-Password
-You can change to any ollama ai model
-Blacklist
-Cooldowns
+
+Server password
+
+Ollama AI model
+
+Username blacklist
+
+Chat cooldowns
+
+Other bot settings
+
+The bot can use any Ollama model that is compatible with the configuration.
 
 License
-MIT
+
+This project is licensed under the MIT License.
