@@ -54,7 +54,7 @@ Most configuration options can be found at the top of AiChatBot.js.
 
 Configure the Minecraft connection:
 
-SERVER_HOST = "localhost"
+HOST = "localhost"
 SERVER_PORT = 25565
 BOT_USERNAME = "AiBot"
 PASSWORD = ""
@@ -124,39 +124,28 @@ Customization
 The bot is designed to be easy to modify.
 
 You can change:
-
 Minecraft server settings
-
 Bot username
-
 Authentication
-
 AI model
-
 System prompt
-
 Blacklisted players
-
 Cooldowns
-
 Announcement behavior
-
 AI personality
-
 Most changes can be made without modifying the core bot logic.
-
 Links
-
 GitHub Repository
-
 Mineflayer
-
 Ollama
-
 License
 
 Released under the MIT License.
-
 See LICENSE for more information.
 
 <p align="center"> Made with Mineflayer and Ollama </p>
+
+</details> <details> <summary><strong>Support</strong></summary> <br>
+LEC Public Discord: discord.gg/6b6tlec
+Discord: injectexploit, exploitedtux
+
