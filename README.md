@@ -1,4 +1,4 @@
-Minecraft AI Chat Bot
+
 <p align="center"> <strong>A simple AI-powered Minecraft chat bot using Mineflayer and Ollama.</strong> </p> <p align="center"> <a href="https://github.com/ExploitedTux/AiChatBot"> <img src="https://img.shields.io/github/stars/ExploitedTux/AiChatBot?style=for-the-badge&color=yellow" alt="Stars"> </a> <a href="https://github.com/ExploitedTux/AiChatBot"> <img src="https://img.shields.io/github/forks/ExploitedTux/AiChatBot?style=for-the-badge" alt="Forks"> </a> <a href="https://github.com/ExploitedTux/AiChatBot/blob/main/LICENSE"> <img src="https://img.shields.io/github/license/ExploitedTux/AiChatBot?style=for-the-badge" alt="License"> </a> </p> <p align="center"> <a href="#features">Features</a> • <a href="#installation">Installation</a> • <a href="#configuration">Configuration</a> • <a href="#usage">Usage</a> • <a href="#license">License</a> </p>
 Features
 Feature	Description
@@ -38,12 +38,10 @@ npm install
 
 </details> <details> <summary><strong>3. Install an Ollama model</strong></summary>
 
-For example:
-
-ollama pull qwen-heretic
+git clone https://huggingface.co/mufasabrownie/Qwen3-4B-heretic-GGUF
 
 
-You can replace qwen-heretic with another compatible Ollama model.
+You can replace qwen3.4B with another compatible Ollama model.
 
 </details> <details> <summary><strong>4. Start the bot</strong></summary>
 node AiChatBot.js
