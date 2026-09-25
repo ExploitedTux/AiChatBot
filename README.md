@@ -1,99 +1,100 @@
 <div align="center">
 AiChatBot
+AI-powered Minecraft chat bot using Mineflayer and Ollama
 
-An AI-powered Minecraft chat bot built with Mineflayer and Ollama.
+Chat with a local AI directly through Minecraft chat.
 
-Chat with an AI directly from Minecraft, give it a custom personality, and let it remember conversations with individual players.
 
-<br> <a href="https://github.com/ExploitedTux/AiChatBot"> <img src="https://img.shields.io/github/stars/ExploitedTux/AiChatBot?style=for-the-badge&color=yellow" alt="Stars"> </a> <a href="https://github.com/ExploitedTux/AiChatBot"> <img src="https://img.shields.io/github/forks/ExploitedTux/AiChatBot?style=for-the-badge" alt="Forks"> </a> <a href="https://github.com/ExploitedTux/AiChatBot/blob/main/LICENSE"> <img src="https://img.shields.io/github/license/ExploitedTux/AiChatBot?style=for-the-badge" alt="License"> </a>
 
-<br><br>
 
-<a href="#features">Features</a> •
-<a href="#installation">Installation</a> •
-<a href="#configuration">Configuration</a> •
-<a href="#usage">Usage</a> •
-<a href="#support">Support</a>
+
+Features •
+Installation •
+Configuration •
+Usage •
+Customization •
+Support
 
 </div>
 Features
-
-AI Chat — Talk to the bot directly through Minecraft chat.
-
-Per-Player Memory — Each player gets their own conversation history.
-
-Ollama Support — Run local AI models through Ollama.
-
-Custom Personality — Change the system prompt to make the bot behave however you want.
-
-Automatic Reconnects — Reconnect automatically when the bot gets disconnected.
-
-Player Blacklist — Prevent specific players from interacting with the bot.
-
-Cooldowns — Control how often players can use the AI and how quickly the bot sends messages.
-
-Long Responses — Automatically splits longer AI responses into multiple Minecraft messages.
-
-Startup Messages — Send a random message when the bot joins the server.
-
-Config File — Keep server, AI, cooldown, and bot settings in one place.
-
-Command Protection — Prevent AI output from accidentally being sent as Minecraft commands.
-
+Feature	Description
+AI Chat	Talk to an AI directly through Minecraft
+Per-Player Memory	Keeps a separate conversation for each player
+Ollama	Run AI models locally through Ollama
+Custom Personality	Change the bot's personality and behavior
+Auto Reconnect	Automatically reconnect after disconnecting
+Blacklist	Block specific players from using the bot
+Cooldowns	Prevent spam and excessive AI requests
+Chat Queue	Controls outgoing messages to avoid flooding chat
+Long Responses	Splits long AI responses into multiple messages
+Startup Messages	Sends a random message when the bot joins
+Configuration	Keep your settings in config.json
+Pathfinder	Includes Mineflayer Pathfinder support
 Requirements
 
-Before running the bot, make sure you have:
+You will need:
 
 Node.js
 
+npm
+
 Ollama
 
-A compatible Ollama model
+An Ollama-compatible model
 
-A Minecraft server that allows your bot to connect
+A Minecraft server
 
-Node.js packages listed in package.json
+The bot currently uses:
 
-Recommended Model
+Mineflayer
 
-The bot works with any Ollama-compatible model.
+Mineflayer Pathfinder
 
-The current configuration uses:
+minecraft-data
+
+Ollama
+
+Recommended model
+
+The default configuration uses:
 
 qwen-heretic
 
 
-You can change this to any model you have installed in Ollama.
+You can use any compatible model installed in Ollama.
 
 Installation
-
-Clone the repository:
-
+1. Clone the repository
 git clone https://github.com/ExploitedTux/AiChatBot.git
 cd AiChatBot
 
-
-Install the dependencies:
-
+2. Install dependencies
 npm install
 
+3. Install Ollama
 
-Install and set up Ollama, then make sure the model you want to use is available locally.
+Download and install Ollama from:
 
-Check your installed models with:
+https://ollama.com/
+
+Check that it is installed:
+
+ollama --version
+
+4. Install your AI model
+
+For example:
+
+ollama pull qwen-heretic
+
+
+Check your installed models:
 
 ollama list
 
+5. Configure the bot
 
-Start Ollama if it isn't already running.
-
-Then configure config.json and start the bot:
-
-node ChatBot.js
-
-Configuration
-
-The bot uses config.json for its main settings.
+Create a config.json file in the project directory.
 
 Example:
 
@@ -106,7 +107,8 @@ Example:
   ],
   "msglist": [
     "Chat with me using ?ai",
-    "Ask me something with ?ai"
+    "Ask me something with ?ai",
+    "I'm online!"
   ],
   "AI_MODEL": "qwen-heretic",
   "MAX_HISTORY": 8,
@@ -118,56 +120,65 @@ Example:
   "AI_PREFIX": "?ai"
 }
 
+6. Start the bot
+node ChatBot.js
+
+Configuration
+
+All of the main settings are stored in config.json.
+
 Minecraft
-"username": "AiBot",
-"password": "CHANGE_ME",
-"Ip": "localhost"
+{
+  "username": "AiBot",
+  "password": "CHANGE_ME",
+  "Ip": "localhost"
+}
+
+Setting	Description
+username	Minecraft username for the bot
+password	Server login password
+Ip	Minecraft server address
+
+If your server doesn't require a login password, leave it empty:
+
+"password": ""
+
+AI Model
+"AI_MODEL": "qwen-heretic"
 
 
-username is the Minecraft username used by the bot.
+This is the Ollama model used for conversations.
 
-password is optional and is used for servers that require /login.
+You can change it to any model available on your machine.
 
-Ip is the address of the Minecraft server.
+For example:
+
+"AI_MODEL": "llama3.1"
 
 Blacklist
 
-Players listed under blacklist will be ignored by the AI.
+Add players that should not be able to use the bot:
 
 "blacklist": [
   "PlayerOne",
   "PlayerTwo"
 ]
 
+
+The bot will ignore AI requests from these players.
+
 Startup Messages
 
-msglist contains messages the bot can randomly send after joining.
+The bot can send a random message after joining:
 
 "msglist": [
   "Chat with me using ?ai",
   "Ask me something with ?ai",
-  "What's up?"
+  "I'm online!"
 ]
 
-AI Model
 
-Choose the Ollama model used by the bot:
-
-"AI_MODEL": "qwen-heretic"
-
-
-You can replace this with any compatible model installed on your system.
-
-Cooldowns
-"AI_COOLDOWN": 6000,
-"CHAT_COOLDOWN": 8000
-
-
-AI_COOLDOWN controls how often an individual player can request an AI response.
-
-CHAT_COOLDOWN controls the delay between messages sent by the bot.
-
-Values are in milliseconds.
+A different message can be selected each time the bot joins.
 
 Conversation History
 "MAX_HISTORY": 8
@@ -175,61 +186,129 @@ Conversation History
 
 Controls how much conversation history is kept for each player.
 
-Higher values give the AI more context but use more tokens and memory.
+Each player has their own separate conversation.
 
-Response Length
-"MC_CHAT_LIMIT": 150,
+AI Cooldown
+"AI_COOLDOWN": 6000
+
+
+Controls how often the same player can request an AI response.
+
+The value is in milliseconds.
+
+6000 = 6 seconds
+
+Chat Cooldown
+"CHAT_COOLDOWN": 8000
+
+
+Controls the delay between messages sent by the bot.
+
+8000 = 8 seconds
+
+
+This helps prevent the bot from flooding chat.
+
+Minecraft Chat Limit
+"MC_CHAT_LIMIT": 150
+
+
+Controls the maximum length of each message sent by the bot.
+
+Long AI responses are automatically split into multiple messages.
+
+AI Continuations
 "MAX_CONTINUATIONS": 2
 
 
-MC_CHAT_LIMIT controls the maximum size of each Minecraft chat message.
+Controls how many times the bot can ask Ollama to continue a response if the model stops because it reaches its output limit.
 
-MAX_CONTINUATIONS controls how many times the bot can continue an AI response when the model reaches its output limit.
+Reconnect Delay
+"RECONNECT_DELAY": 5000
+
+
+Controls how long the bot waits before reconnecting after a disconnect.
+
+5000 = 5 seconds
 
 AI Prefix
 "AI_PREFIX": "?ai"
 
 
-Players use the prefix to talk to the bot.
+Players use this prefix to talk to the AI.
 
 Example:
 
 ?ai hello
 
-Customizing the AI
 
-The bot's personality is controlled by the system prompt inside ChatBot.js.
+You can change it to whatever you want:
 
-You can change it to whatever you want.
-
-For example:
-
-const MommyPrompt = `You are a friendly Minecraft player who enjoys talking with people on the server.`;
-
-
-You can use this to create different personalities, speaking styles, or behaviors without changing the rest of the bot.
+"AI_PREFIX": "!ai"
 
 Usage
 
-Start the bot:
+Start the bot with:
 
 node ChatBot.js
 
 
-Once it joins the server, players can talk to it using the configured prefix.
+Once connected, players can use the configured prefix.
 
 Example:
 
 <Player> ?ai hello
 
-<AiBot> Hey! What's up?
+<AiBot> Hey, what's up?
 
 <Player> ?ai what are you doing?
 
-<AiBot> Just hanging around and talking to people.
+<AiBot> Just hanging around and talking to everyone.
 
 
-Each player has their own conversation history, so conversations don't get mixed together.
+The bot keeps separate conversations for each player.
+
+For example:
+
+PlayerA
+└── Conversation A
+
+PlayerB
+└── Conversation B
+
+PlayerC
+└── Conversation C
+
+Customization
+
+The bot's personality is controlled by the system prompt in ChatBot.js.
+
+Example:
+
+const MommyPrompt = `
+You are a friendly Minecraft player.
+Keep conversations casual and natural.
+Keep responses relatively short.
+`.trim();
+
+
+You can change the prompt to create whatever personality you want.
+
+Some examples:
+
+Friendly Minecraft assistant
+
+Server guide
+
+Funny character
+
+Roleplay character
+
+NPC-style assistant
+
+Technical helper
+
+Custom AI personality
 
 Project Structure
 AiChatBot/
@@ -237,64 +316,112 @@ AiChatBot/
 ├── config.json
 ├── package.json
 ├── package-lock.json
-└── README.md
+├── README.md
+└── LICENSE
 
-Customization
+Security
 
-The bot is built to be easy to change.
+Do not upload your real server password or other private credentials to GitHub.
 
-You can customize:
+Add your configuration file to .gitignore:
 
-Minecraft server
+config.json
+node_modules/
 
-Bot username
 
-Login password
+If you accidentally publish a password, change it immediately.
 
-AI model
+Troubleshooting
+The bot won't connect
 
-AI personality
+Check:
 
-Chat prefix
+The server IP is correct
 
-Player blacklist
+The server is online
 
-Conversation history
+The Minecraft version is supported
 
-AI cooldown
+Another bot isn't already using the same username
 
-Chat cooldown
+Your authentication settings are correct
 
-Startup messages
+Ollama isn't responding
 
-Response length
+Check that Ollama is running:
 
-Reconnect timing
+ollama list
 
-Most settings can be changed directly through config.json.
 
-Links
+Make sure the model from AI_MODEL is installed:
 
-GitHub
+ollama list
+
+
+If it isn't installed:
+
+ollama pull qwen-heretic
+
+The bot keeps reconnecting
+
+Check the console for the actual disconnect reason.
+
+Common causes include:
+
+Duplicate username
+
+Incorrect server version
+
+Server kicks
+
+Authentication issues
+
+Network problems
+
+Incorrect configuration
+
+Project Links
+
+GitHub Repository
 
 Mineflayer
+
+Mineflayer Pathfinder
 
 Ollama
 
 Support
 
-Need help or want to get in touch?
+If you need help or want to report a problem:
 
-LEC Public Discord: discord.gg/6b6tlec
+Discord
 
-Discord: injectexploit / exploitedtux
+LEC Public Discord:
+
+discord.gg/6b6tlec
+
+Developer:
+
+injectexploit
+
+exploitedtux
+
+GitHub
+
+Open an issue on the repository:
+
+https://github.com/ExploitedTux/AiChatBot/issues
 
 License
 
-This project is released under the MIT License.
+AiChatBot is released under the MIT License.
 
 See LICENSE for more information.
 
 <div align="center">
-Made with Mineflayer + Ollama
+
+Made with Mineflayer and Ollama
+
+⭐ Star the repository if you enjoy the project.
+
 </div>
