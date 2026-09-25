@@ -1,50 +1,63 @@
-<div align="center">
+<div align="center"> <h1>AiChatBot</h1> <p> <strong>An AI-powered Minecraft chat bot built with Mineflayer and Ollama.</strong> </p> <p> Chat with an AI directly from Minecraft, give it a custom personality, and let it remember conversations with individual players. </p> <br> <a href="https://github.com/ExploitedTux/AiChatBot"> <img src="https://img.shields.io/github/stars/ExploitedTux/AiChatBot?style=for-the-badge&color=yellow" alt="Stars"> </a> <a href="https://github.com/ExploitedTux/AiChatBot"> <img src="https://img.shields.io/github/forks/ExploitedTux/AiChatBot?style=for-the-badge" alt="Forks"> </a> <a href="https://github.com/ExploitedTux/AiChatBot/blob/main/LICENSE"> <img src="https://img.shields.io/github/license/ExploitedTux/AiChatBot?style=for-the-badge" alt="License"> </a>
 
-# AiChatBot
+<br><br>
 
-### AI-powered Minecraft chat bot using Mineflayer and Ollama
-
-Chat with a local AI directly through Minecraft chat.
-
-[![Stars](https://img.shields.io/github/stars/ExploitedTux/AiChatBot?style=for-the-badge&color=yellow)](https://github.com/ExploitedTux/AiChatBot)
-[![Forks](https://img.shields.io/github/forks/ExploitedTux/AiChatBot?style=for-the-badge)](https://github.com/ExploitedTux/AiChatBot)
-[![License](https://img.shields.io/github/license/ExploitedTux/AiChatBot?style=for-the-badge)](https://github.com/ExploitedTux/AiChatBot/blob/main/LICENSE)
-
-[Features](#features) • [Installation](#installation) • [Configuration](#configuration) • [Usage](#usage) • [Support](#support)
+<a href="#features">Features</a> •
+<a href="#requirements">Requirements</a> •
+<a href="#installation">Installation</a> •
+<a href="#configuration">Configuration</a> •
+<a href="#usage">Usage</a> •
+<a href="#support">Support</a>
 
 </div>
+<h2 id="features">Features</h2> <table> <tr> <td width="50%"> <h3>AI Chat</h3>
 
----
+Talk to the AI directly through Minecraft chat.
 
-## Features
+</td> <td width="50%"> <h3>Per-Player Memory</h3>
 
-- AI-powered Minecraft chat
-- Separate conversation history for every player
-- Local AI through Ollama
-- Custom AI personalities
-- Automatic reconnects
-- Player blacklist
-- Configurable AI cooldowns
-- Configurable chat cooldowns
-- Automatic message splitting
-- Random startup messages
-- Minecraft command protection
-- Mineflayer Pathfinder support
-- Simple JSON configuration
+Each player gets their own conversation history.
 
----
+</td> </tr> <tr> <td> <h3>Ollama Support</h3>
 
-## Requirements
+Run AI models locally through Ollama.
 
-- Node.js
-- npm
-- Ollama
-- An Ollama-compatible AI model
-- A Minecraft server
+</td> <td> <h3>Custom Personality</h3>
 
-### Recommended Model
+Change the system prompt to create your own AI personality.
 
-The default configuration uses:
+</td> </tr> <tr> <td> <h3>Automatic Reconnects</h3>
 
-```text
-qwen-heretic
+Automatically reconnect when the bot gets disconnected.
+
+</td> <td> <h3>Player Blacklist</h3>
+
+Prevent specific players from interacting with the AI.
+
+</td> </tr> <tr> <td> <h3>Cooldowns</h3>
+
+Control AI request and chat cooldowns.
+
+</td> <td> <h3>Long Responses</h3>
+
+Automatically split long AI responses into multiple Minecraft messages.
+
+</td> </tr> <tr> <td> <h3>Startup Messages</h3>
+
+Send a random message when the bot joins the server.
+
+</td> <td> <h3>Command Protection</h3>
+
+Prevent AI output from accidentally being sent as Minecraft commands.
+
+</td> </tr> </table>
+<h2 id="requirements">Requirements</h2> <p>Before running the bot, make sure you have the following installed:</p> <ul> <li><b>Node.js</b></li> <li><b>npm</b></li> <li><b>Ollama</b></li> <li><b>An Ollama-compatible AI model</b></li> <li><b>A Minecraft server</b> that allows your bot to connect</li> </ul> <h3>Recommended Model</h3> <p> The bot works with any Ollama-compatible model. The current configuration uses: </p> <p> <code>qwen-heretic</code> </p> <p> You can replace this with any model installed in Ollama. </p>
+<h2 id="installation">Installation</h2> <h3>1. Clone the Repository</h3> <p>Clone the repository and enter the project directory:</p> <pre><code>git clone https://github.com/ExploitedTux/AiChatBot.git cd AiChatBot</code></pre> <h3>2. Install Dependencies</h3> <p>Install all required Node.js dependencies:</p> <pre><code>npm install</code></pre> <h3>3. Install Ollama</h3> <p> Install <a href="https://ollama.com/">Ollama</a> on your system. Make sure Ollama is running before starting the bot. </p> <h3>4. Install an AI Model</h3> <p>The default configuration uses <code>qwen-heretic</code>.</p> <pre><code>ollama pull qwen-heretic</code></pre> <p>Check your installed models with:</p> <pre><code>ollama list</code></pre> <p> You can use any other compatible model as long as it is installed locally and configured in <code>config.json</code>. </p> <h3>5. Configure the Bot</h3> <p> Open <code>config.json</code> and configure the bot to match your Minecraft server and Ollama setup. </p> <h3>6. Start the Bot</h3> <pre><code>node ChatBot.js</code></pre> <p> The bot should now connect to your Minecraft server and be ready to use. </p>
+<h2 id="configuration">Configuration</h2> <p> The bot uses <code>config.json</code> for its main configuration. </p> <h3>Example Configuration</h3> <pre><code>{ "username": "AiBot", "password": "CHANGE_ME", "Ip": "localhost", "blacklist": [ "ExamplePlayer" ], "msglist": [ "Chat with me using ?ai", "Ask me something with ?ai" ], "AI_MODEL": "qwen-heretic", "MAX_HISTORY": 8, "AI_COOLDOWN": 6000, "CHAT_COOLDOWN": 8000, "MC_CHAT_LIMIT": 150, "MAX_CONTINUATIONS": 2, "RECONNECT_DELAY": 5000, "AI_PREFIX": "?ai" }</code></pre> <h3>Minecraft Connection</h3> <table> <tr> <th>Setting</th> <th>Description</th> </tr> <tr> <td><code>username</code></td> <td>Minecraft username used by the bot.</td> </tr> <tr> <td><code>password</code></td> <td>Optional password used for servers requiring <code>/login</code>.</td> </tr> <tr> <td><code>Ip</code></td> <td>Minecraft server address.</td> </tr> </table> <h3>Player Blacklist</h3> <p> Players listed under <code>blacklist</code> will be ignored by the AI. </p> <pre><code>"blacklist": [ "PlayerOne", "PlayerTwo" ]</code></pre> <h3>Startup Messages</h3> <p> The <code>msglist</code> setting contains messages the bot can randomly send after joining the server. </p> <pre><code>"msglist": [ "Chat with me using ?ai", "Ask me something with ?ai", "What's up?" ]</code></pre> <h3>AI Model</h3> <pre><code>"AI_MODEL": "qwen-heretic"</code></pre> <p> Replace <code>qwen-heretic</code> with any compatible Ollama model installed on your system. </p> <h3>Cooldowns</h3> <pre><code>"AI_COOLDOWN": 6000, "CHAT_COOLDOWN": 8000</code></pre> <table> <tr> <th>Setting</th> <th>Description</th> </tr> <tr> <td><code>AI_COOLDOWN</code></td> <td>Controls how often an individual player can request an AI response.</td> </tr> <tr> <td><code>CHAT_COOLDOWN</code></td> <td>Controls the delay between messages sent by the bot.</td> </tr> </table> <p> <b>All cooldown values are in milliseconds.</b> </p> <h3>Conversation History</h3> <pre><code>"MAX_HISTORY": 8</code></pre> <p> Controls how much conversation history is kept for each player. Higher values provide more context but can use more tokens and memory. </p> <h3>Response Length</h3> <pre><code>"MC_CHAT_LIMIT": 150, "MAX_CONTINUATIONS": 2</code></pre> <table> <tr> <th>Setting</th> <th>Description</th> </tr> <tr> <td><code>MC_CHAT_LIMIT</code></td> <td>Maximum size of each Minecraft chat message.</td> </tr> <tr> <td><code>MAX_CONTINUATIONS</code></td> <td>Maximum number of times the bot can continue an AI response.</td> </tr> </table> <h3>AI Prefix</h3> <pre><code>"AI_PREFIX": "?ai"</code></pre> <p> Players use the configured prefix to talk to the bot. </p> <pre><code>?ai hello</code></pre>
+<h2>Customizing the AI</h2> <p> The bot's personality is controlled by the system prompt inside <code>ChatBot.js</code>. </p> <p> You can change the prompt to create different personalities, speaking styles, or behaviors. </p> <h3>Example</h3> <pre><code>const MommyPrompt = `You are a friendly Minecraft player who enjoys talking with people on the server.`;</code></pre> <p> You can modify this prompt without changing the rest of the bot. </p>
+<h2 id="usage">Usage</h2> <h3>Start the Bot</h3> <pre><code>node ChatBot.js</code></pre> <p> Once the bot joins the server, players can talk to it using the configured prefix. </p> <h3>Example</h3> <pre><code>?ai hello</code></pre> <p> The bot will respond directly in Minecraft chat. </p> <h3>Conversation Memory</h3> <p> Each player has their own conversation history. This means conversations between different players do not get mixed together. </p>
+<h2>Project Structure</h2> <pre><code>AiChatBot/ ├── ChatBot.js ├── config.json ├── package.json ├── package-lock.json └── README.md</code></pre>
+<h2>Customization</h2> <p>The bot is designed to be easy to customize.</p> <table> <tr> <th>Setting</th> <th>Configurable</th> </tr> <tr> <td><b>Minecraft Server</b></td> <td>Yes</td> </tr> <tr> <td><b>Bot Username</b></td> <td>Yes</td> </tr> <tr> <td><b>Login Password</b></td> <td>Yes</td> </tr> <tr> <td><b>AI Model</b></td> <td>Yes</td> </tr> <tr> <td><b>AI Personality</b></td> <td>Yes</td> </tr> <tr> <td><b>Chat Prefix</b></td> <td>Yes</td> </tr> <tr> <td><b>Player Blacklist</b></td> <td>Yes</td> </tr> <tr> <td><b>Conversation History</b></td> <td>Yes</td> </tr> <tr> <td><b>AI Cooldown</b></td> <td>Yes</td> </tr> <tr> <td><b>Chat Cooldown</b></td> <td>Yes</td> </tr> <tr> <td><b>Startup Messages</b></td> <td>Yes</td> </tr> <tr> <td><b>Response Length</b></td> <td>Yes</td> </tr> <tr> <td><b>Reconnect Timing</b></td> <td>Yes</td> </tr> </table> <p> Most settings can be changed directly through <code>config.json</code>. </p>
+<h2>Links</h2> <table> <tr> <td><b>GitHub</b></td> <td><a href="https://github.com/ExploitedTux/AiChatBot">AiChatBot</a></td> </tr> <tr> <td><b>Mineflayer</b></td> <td><a href="https://github.com/PrismarineJS/mineflayer">Mineflayer</a></td> </tr> <tr> <td><b>Ollama</b></td> <td><a href="https://ollama.com/">Ollama</a></td> </tr> </table>
+<h2 id="support">Support</h2> <p> Need help or want to get in touch? </p> <table> <tr> <td><b>LEC Public Discord</b></td> <td><code>discord.gg/6b6tlec</code></td> </tr> <tr> <td><b>Discord</b></td> <td><code>injectexploit</code> / <code>exploitedtux</code></td> </tr> </table>
+<h2>License</h2> <p> This project is released under the <b>MIT License</b>. </p> <p> See <a href="LICENSE">LICENSE</a> for more information. </p> <br> <div align="center"> <a href="https://github.com/ExploitedTux/AiChatBot"> <img src="https://img.shields.io/github/stars/ExploitedTux/AiChatBot?style=for-the-badge&color=yellow" alt="Stars"> </a> <a href="https://github.com/ExploitedTux/AiChatBot"> <img src="https://img.shields.io/github/forks/ExploitedTux/AiChatBot?style=for-the-badge" alt="Forks"> </a> <a href="https://github.com/ExploitedTux/AiChatBot/blob/main/LICENSE"> <img src="https://img.shields.io/github/license/ExploitedTux/AiChatBot?style=for-the-badge" alt="License"> </a> </div>
