@@ -1,0 +1,15 @@
+{
+  "username": "user",
+  "password": "12345678",
+  "Ip": "6b6t.org",
+  "blacklist": ["SamuelSith", "Grassyboiii", "GrassyV2"],
+  "MSGLIST": ["Chat with me using #ai","Made by Injectexploit use with #ai","Talk with the best mommy ai on 6b6t with #ai"],
+ "AI_MODEL": "qwen-heretic",
+ "MAX_HISTORY": "8",
+ "AI_COOLDOWN": "6000",
+ "CHAT_COOLDOWN": "8000",
+ "MC_CHAT_LIMIT": "150",
+ "MAX_CONTINUATIONS": "2",
+ "RECONNECT_DELAY":  "5000", 
+ "AI_PREFIX":  "#ai"
+}
