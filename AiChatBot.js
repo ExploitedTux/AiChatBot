@@ -1,35 +1,33 @@
+const fs = require("fs");
 const mineflayer = require("mineflayer");
 const { pathfinder, Movements } = require("mineflayer-pathfinder");
 const mcDataLoader = require("minecraft-data");
+const config = JSON.parse(fs.readFileSync("./config.json", "utf-8"));
 
-const pass = "123456789"; // Password for your bot
-const blacklist = ["SamuelSith", "Grassyboiii", "GrassyV2"];
+const pass = config.password; // Password for your bot
+const blacklist = config.blacklist;
 
-const msglist = [
-  "Chat with me using >ai",
-  "Made by Injectexploit use with >ai",
-  "Talk with the best mommy ai on 6b6t with >ai",
-];
+const msglist = config.MSGLIST
 
 // Config of the bot and join
 const BOT_CONFIG = {
-  host: "6b6t.org", // Ip of the server
+  host: config.Ip, // Ip of the server
   port: 25565,
-  username: "LECBOT", // Username of your bot
+  username: config.username, // Username of your bot
   auth: "offline", // Change to 'microsoft' if you have premium account
   version: "1.21.11", // Versions keep at 1.21.11 for stability
 };
 
-const AI_MODEL = "qwen-heretic"; // You can change it to any model you have on ollama
+const AI_MODEL = config.AI_MODEL; // You can change it to any model you have on ollama
 const OLLAMA_URL = "http://127.0.0.1:11434/api/chat";
-const MAX_HISTORY = 8; // Max chats the ai remebers from the player
-const AI_COOLDOWN = 6000; // Cooldown to respond to the same player
-const CHAT_COOLDOWN = 8000; // Cooldown for chat to prevent spam cooldown
-const MC_CHAT_LIMIT = 150; // Chat limit of minecraft is 256
-const MAX_CONTINUATIONS = 4; // Max continues for the specific request
-const RECONNECT_DELAY = 5000; // Delay of reconnecting
+const MAX_HISTORY = config.MAX_HISTORY; // Max chats the ai remebers from the player
+const AI_COOLDOWN = config.AI_COOLDOWN; // Cooldown to respond to the same player
+const CHAT_COOLDOWN = config.CHAT_COOLDOWN; // Cooldown for chat to prevent spam cooldown
+const MC_CHAT_LIMIT = config.MC_CHAT_LIMIT; // Chat limit of minecraft is 256
+const MAX_CONTINUATIONS = config.MAX_CONTINUATIONS; // Max continues for the specific request
+const RECONNECT_DELAY = config.RECONNECT_DELAY; // Delay of reconnecting
 const COOLDOWN_SWEEP_MS = 60 * 60 * 1000;
-const AI_PREFIX = ">ai"; // Prefix for the ai
+const AI_PREFIX = config.AI_PREFIX; // Prefix for the ai
 
 
 const cooldowns = new Map();
@@ -180,7 +178,7 @@ async function ollamaChat(history) {
       think: false,
       options: {
         temperature: 0.7,
-        num_predict: 90,
+        num_predict: 55,
       },
     }),
   });
@@ -309,7 +307,9 @@ async function handleSpawn(currentBot) {
 
     currentBot.loadPlugin(pathfinder);
 
-    currentBot.pathfinder.setMovements(new Movements(currentBot, mcData));
+    currentBot.pathfinder.setMovements(
+      new Movements(currentBot, mcData)
+    );
 
     // Travel system from registry island to 6b6t
     await sleep(3000);
@@ -321,17 +321,26 @@ async function handleSpawn(currentBot) {
 
     currentBot.setControlState("forward", true);
     await sleep(6000);
+
     currentBot.setControlState("forward", false);
     await sleep(3000);
+
     currentBot.setControlState("forward", true);
     await sleep(3000);
+
     currentBot.setControlState("forward", false);
+
     reconnecting = false;
     console.log("[BOT] Spawned in");
 
-    await sleep(3000);
+    await sleep(2000);
 
-    sendChat("Ready to chat with >ai");
+    const randomMsg =
+      msglist[Math.floor(Math.random() * msglist.length)];
+
+    if (randomMsg) {
+      currentBot.chat(randomMsg);
+    }
   } catch (error) {
     console.error("[SPAWN ERROR]", error);
     scheduleReconnect("spawn error");
